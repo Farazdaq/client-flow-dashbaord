@@ -1,10 +1,10 @@
 <div align="center">
 
-# [Project Name]
+# ClientFlow
 
-### [Professional Project Tagline]
+### AI-Powered Customer Engagement & CRM Platform
 
-[Write a concise and professional description explaining the purpose of the platform, target users, and core business value.]
+An intelligent SaaS platform designed to help businesses centralize customer data, automate multichannel engagement, and optimize customer relationships. Combining AI-driven customer classification, behavioral analytics, audience segmentation, and real-time insights, the platform empowers marketing teams and business owners to identify at-risk customers, personalize campaigns, and make data-driven decisions across email, WhatsApp, and push notifications.
 
 <br/>
 
@@ -15,7 +15,7 @@
 ![Build](https://img.shields.io/badge/Build-Passing-success?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Mobile%20%7C%20API-lightgrey?style=for-the-badge)
-![Architecture](https://img.shields.io/badge/Architecture-Scalable-orange?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-Service--Oriented-orange?style=for-the-badge)
 ![Documentation](https://img.shields.io/badge/Documentation-Maintained-blueviolet?style=for-the-badge)
 
 <br/>
@@ -26,13 +26,12 @@
 <!-- Replace or extend based on actual technologies -->
 
 ![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat-square&logo=react&logoColor=white)
-![Next.js](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![NestJS](https://img.shields.io/badge/Framework-NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/DevOps-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![GitHub_Actions](https://img.shields.io/badge/CI/CD-GitHub%20Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
+![Express.js](https://img.shields.io/badge/Server-Express.js-000000?style=flat-square&logo=express&logoColor=white)
+
+![Supabase](https://img.shields.io/badge/Backend-Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
+![Firebase](https://img.shields.io/badge/Backend-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+![WhatsApp](https://img.shields.io/badge/Messaging-WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)
 
 </div>
 
@@ -110,14 +109,19 @@ All core project documentation is centralized below for structured navigation an
 
 <!-- Replace placeholders with actual platform capabilities -->
 
-- [Authentication & Authorization]
-- [Analytics Dashboard]
-- [Real-time Synchronization]
-- [Responsive Cross-platform Interface]
-- [Modular Scalable Architecture]
-- [Notifications & Events]
-- [API Integrations]
-- [Role-based Access Control]
+- Authentication & Authorization
+- Overview
+- Listing Build & Management
+- Customers Management
+- Campaign Management
+- AI Insights
+- Communication, Conversations & Tracking
+- Analytics & Geo Analytics
+- Reports & Exporting
+- Integrations & Webhooks
+- AI Assistance
+- Deliverability & Compliance
+- Social Media Automation & Management
 
 ---
 
@@ -125,11 +129,13 @@ All core project documentation is centralized below for structured navigation an
 
 ## Frontend
 
-| Technology           | Purpose          |
-| -------------------- | ---------------- |
-| [Frontend Framework] | [Describe usage] |
-| [State Management]   | [Describe usage] |
-| [Styling Framework]  | [Describe usage] |
+| Technology | Purpose          |
+| ---------- | ---------------- |
+| React js   | [Describe usage] |
+| Firebase   | [Describe usage] |
+| Tailwind   | [Describe usage] |
+| Express js | [Describe usage] |
+| Supabase   | [Describe usage] |
 
 ---
 
@@ -137,9 +143,9 @@ All core project documentation is centralized below for structured navigation an
 
 | Technology          | Purpose          |
 | ------------------- | ---------------- |
-| [Backend Framework] | [Describe usage] |
-| [Authentication]    | [Describe usage] |
-| [API Architecture]  | [Describe usage] |
+| [-----------------] | [Describe usage] |
+| [--------------]    | [Describe usage] |
+| [----------------]  | [Describe usage] |
 
 ---
 
@@ -147,7 +153,7 @@ All core project documentation is centralized below for structured navigation an
 
 | Technology         | Purpose          |
 | ------------------ | ---------------- |
-| [Database]         | [Describe usage] |
+| Firebase           | [Describe usage] |
 | [Caching Solution] | [Describe usage] |
 | [Containerization] | [Describe usage] |
 | [CI/CD Platform]   | [Describe usage] |

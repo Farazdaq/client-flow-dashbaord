@@ -112,7 +112,7 @@ All core project documentation is centralized below for structured navigation an
 - Authentication & Authorization
 - Overview
 - Listing Build & Management
-- Customers Management
+- Customer Management & Segmentation
 - Campaign Management
 - AI Insights
 - Communication, Conversations & Tracking

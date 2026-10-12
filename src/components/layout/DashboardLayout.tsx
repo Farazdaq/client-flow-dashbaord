@@ -9,12 +9,16 @@ export default function DashboardLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* Fixed sidebar: 240px wide */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="min-h-screen md:pl-64">
+      {/* Main area starts exactly where the sidebar ends */}
+      <div className="min-h-screen min-w-0 md:ml-60">
+        {/* Navbar fills the available width */}
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
 
-        <main className="p-4 sm:p-6 lg:p-8">
+        {/* Page content */}
+        <main className="min-w-0 p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>

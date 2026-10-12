@@ -1,31 +1,36 @@
 import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  LuLayoutDashboard,
-  LuUsers,
-  LuPanelsTopLeft,
-  LuMegaphone,
-  LuMessagesSquare,
-  LuShare2,
   LuBrainCircuit,
   LuChartNoAxesCombined,
-  LuFileText,
-  LuPlug,
-  LuX,
-  LuChevronRight,
   LuChevronLeft,
+  LuChevronRight,
+  LuFileText,
+  LuLayoutDashboard,
+  LuMegaphone,
+  LuMessagesSquare,
+  LuPanelsTopLeft,
+  LuPlug,
+  LuShare2,
+  LuUsers,
+  LuX,
 } from "react-icons/lu";
 import Logo from "../Logo/Logo";
+import AIAssistance, {
+  useAIAssistance,
+  type AIAssistanceController,
+} from "../../pages/AIAccesstnce";
+
+const SHOW_AI_CASE_SWITCHER = true;
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
-  /** Component shown in the center when the sidebar is expanded */
-  expandedContent?: ReactNode;
-  /** Component shown in the footer, before the arrow button */
+  ai?: AIAssistanceController;
   footerContent?: ReactNode;
+  expandedContent?: ReactNode;
 }
 
 const navigationItems = [
@@ -41,54 +46,29 @@ const navigationItems = [
   { label: "Integrations", path: "/integrations", icon: LuPlug },
 ];
 
-/** Default placeholder for the center area (replace via `expandedContent`) */
-function ExpandedPlaceholder() {
-  return (
-    <div className="flex h-full items-center justify-center p-6">
-      <div className="flex h-full max-h-96 w-full max-w-2xl items-center justify-center rounded-xl border border-dashed border-white/20 text-sm text-[#B8BDCC]">
-        Component placeholder
-      </div>
-    </div>
-  );
-}
-
-/** Default placeholder for the footer slot (replace via `footerContent`) */
-function FooterPlaceholder() {
-  return (
-    <div className="flex h-9 w-full items-center justify-center rounded-md border border-dashed border-white/20 text-xs text-[#B8BDCC]">
-      Placeholder
-    </div>
-  );
-}
-
 export default function Sidebar({
   isOpen,
   onClose,
   expanded,
   onExpandedChange,
-  expandedContent,
+  ai: aiFromParent,
   footerContent,
+  expandedContent,
 }: SidebarProps) {
+  const ownAi = useAIAssistance();
+  const ai = aiFromParent ?? ownAi;
+
   return (
     <aside
-      className={`
-        fixed inset-y-0 left-0 z-50
-        flex h-screen shrink-0
-        bg-[#3D4151] text-white
-        transition-[width,transform] duration-300 ease-in-out
-        w-60
-        ${expanded ? "md:w-full" : "md:w-60"}
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
-        md:translate-x-0
-      `}
+      className={`fixed inset-y-0 left-0 z-50 flex h-screen shrink-0 bg-[#3D4151] text-white transition-[width,transform] duration-300 ease-in-out md:translate-x-0 ${
+        expanded ? "w-full" : "w-60"
+      } ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
     >
-      {/* Icon rail / normal sidebar */}
       <div
         className={`flex h-full w-60 shrink-0 flex-col transition-[width] duration-300 ease-in-out ${
           expanded ? "md:w-16" : ""
         }`}
       >
-        {/* Brand: matches the navbar height */}
         <div
           className={`flex h-14 min-h-14 shrink-0 items-center justify-between border-b border-white/10 px-4 ${
             expanded ? "md:justify-center md:px-0" : ""
@@ -115,7 +95,6 @@ export default function Sidebar({
           </button>
         </div>
 
-        {/* Navigation */}
         <nav
           aria-label="Main navigation"
           className="flex-1 space-y-0.5 overflow-y-auto overflow-x-hidden px-1.5 pb-4 pt-2"
@@ -132,7 +111,7 @@ export default function Sidebar({
                 title={expanded ? item.label : undefined}
                 onClick={() => {
                   onClose();
-                  onExpandedChange(false); // reveal the page you navigated to
+                  onExpandedChange(false);
                 }}
                 className={({ isActive }) =>
                   `flex h-9 items-center gap-2.5 rounded-md px-3.5 text-sm font-medium transition-colors ${
@@ -144,12 +123,7 @@ export default function Sidebar({
                   }`
                 }
               >
-                <Icon
-                  size={17}
-                  strokeWidth={1.8}
-                  className="shrink-0"
-                  aria-hidden="true"
-                />
+                <Icon size={17} strokeWidth={1.8} aria-hidden="true" />
                 <span className={expanded ? "md:hidden" : ""}>
                   {item.label}
                 </span>
@@ -158,15 +132,38 @@ export default function Sidebar({
           })}
         </nav>
 
-        {/* Footer: placeholder slot, then the expand / collapse arrow */}
         <div
-          className={`flex shrink-0 items-center gap-2 border-t border-white/10 p-2 ${
-            expanded ? "md:justify-center" : ""
+          className={`flex shrink-0 items-end gap-2 border-t border-white/10 p-2 ${
+            expanded ? "md:flex-col md:items-center md:justify-center" : ""
           }`}
         >
-          <div className={`min-w-0 flex-1 ${expanded ? "md:hidden" : ""}`}>
-            {footerContent ?? <FooterPlaceholder />}
-          </div>
+          {footerContent ? (
+            <div
+              className={`min-w-0 h-full  flex-1 ${expanded ? "md:hidden" : ""}`}
+            >
+              {footerContent}
+            </div>
+          ) : (
+            <>
+              <div className={`min-w-0  flex-1 ${expanded ? "md:hidden" : ""}`}>
+                <AIAssistance
+                  ai={ai}
+                  variant="card"
+                  onOpen={() => onExpandedChange(true)}
+                />
+              </div>
+
+              {expanded && (
+                <div className="hidden md:block ">
+                  <AIAssistance
+                    ai={ai}
+                    variant="card"
+                    onOpen={() => onExpandedChange(true)}
+                  />
+                </div>
+              )}
+            </>
+          )}
 
           <button
             type="button"
@@ -184,10 +181,15 @@ export default function Sidebar({
         </div>
       </div>
 
-      {/* Center area, only when expanded */}
       {expanded && (
-        <div className="hidden min-w-0 flex-1 overflow-hidden border-l border-white/10 md:block">
-          {expandedContent ?? <ExpandedPlaceholder />}
+        <div className="hidden  min-w-0 flex-1 overflow-hidden border-l border-white/10 md:block">
+          {expandedContent ?? (
+            <AIAssistance
+              ai={ai}
+              variant="panel"
+              devSwitcher={SHOW_AI_CASE_SWITCHER}
+            />
+          )}
         </div>
       )}
     </aside>
